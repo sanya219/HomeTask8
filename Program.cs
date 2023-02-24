@@ -30,20 +30,14 @@ void PrintArray2DInt (int[,] array)
 
 void SortRow (int[,] array, int rowIndex)
 {
-    int max; 
     for(int i = 0; i < array.GetLength(1); i++)
-    {
-        max = array[rowIndex, i];
         for(int j = i; j < array.GetLength(1); j++)
-        {
-            if(array[rowIndex, j] > max)
+            if(array[rowIndex, j] > array[rowIndex, i])
                 {
                     int temp = array[rowIndex, j];
-                    array [rowIndex, j] = max;
-                    max = temp;
+                    array [rowIndex, j] = array[rowIndex, i];
+                    array[rowIndex, i] = temp;
                 }
-        }
-    }
 }
 
 Console.Write("Enter row count: ");
@@ -56,4 +50,12 @@ Console.Write("Enter max number: ");
 int max = Convert.ToInt32(Console.ReadLine());
 
 int[,] myArray = GenerateArray2DInt(rows, cols, min, max);
+Console.WriteLine("Initial array:");
 PrintArray2DInt(myArray);
+
+for(int i = 0; i < myArray.GetLength(0); i++)
+    SortRow(myArray, i);
+
+Console.WriteLine("\nSorted rows array:");
+PrintArray2DInt(myArray);
+
