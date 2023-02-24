@@ -39,7 +39,7 @@ void SortRow (int[,] array, int rowIndex)
                     array[rowIndex, i] = temp;
                 }
 }
-
+/*
 Console.Write("Enter row count: ");
 int rows = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter column count: ");
@@ -48,7 +48,7 @@ Console.Write("Enter min number: ");
 int min = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter max number: ");
 int max = Convert.ToInt32(Console.ReadLine());
-/*
+*//*
 int[,] myArray54 = GenerateArray2DInt(rows, cols, min, max);
 Console.WriteLine("Initial array:");
 PrintArray2DInt(myArray54);
@@ -213,29 +213,32 @@ PrintArray3DInt(myArray60);
 int[,] GenerateSpiralArray(int rows, int cols)
 {
     int[,] array = new int[rows, cols];
-    int number = 1, minRow = 0, maxRow = rows, minCol = 0, maxCol = cols;
+    int number = 1, minRow = 0, maxRow = rows - 1, minCol = 0, maxCol = cols - 1;
     while(number <= rows * cols)
     {
-        for(int i = minCol; i < maxCol; i++)
+        for(int i = minCol; i <= maxCol; i++)
             array[minRow, i] = number++;
         minRow++;
-        for(int i = minRow; i < maxRow; i++)
+        if(number > rows * cols) break;
+        for(int i = minRow; i <= maxRow; i++)
             array[i, maxCol] = number++;
         maxCol--;
-        for(int i = maxCol; i > minCol; i--)
+        if(number > rows * cols) break;
+        for(int i = maxCol; i >= minCol; i--)
             array[maxRow, i] = number++;
         maxRow--;
-        for(int i = maxRow; i > minRow; i--)
+        if(number > rows * cols) break;
+        for(int i = maxRow; i >= minRow; i--)
             array[i, minCol] = number++;
-        minCol--;
+        minCol++;
     }   
     return array;
 }
 
 Console.Write("Enter rows: ");
-rows = Convert.ToInt32(Console.ReadLine());
+int rows = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter columns: ");
-cols = Convert.ToInt32(Console.ReadLine());
+int cols = Convert.ToInt32(Console.ReadLine());
 
 int[,] myArray62 = GenerateSpiralArray(rows, cols);
 PrintArray2DInt(myArray62);
