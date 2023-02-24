@@ -94,4 +94,4 @@ int minSumRow = 0;
 for(int i = 0; i < myArray56.GetLength(0); i++)
     if(RowSum(myArray56, minSumRow) > RowSum(myArray56, i))
         minSumRow = i;
-Console.WriteLine("Row with minimal sum of elements is: " + minSumRow);
+Console.WriteLine("Row with minimal sum of elements is: " + minSumRow + 1); // в тестах строки нумеруются с 1, поэтому +1
