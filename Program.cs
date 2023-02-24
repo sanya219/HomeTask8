@@ -49,13 +49,49 @@ int min = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter max number: ");
 int max = Convert.ToInt32(Console.ReadLine());
 
-int[,] myArray = GenerateArray2DInt(rows, cols, min, max);
+int[,] myArray54 = GenerateArray2DInt(rows, cols, min, max);
 Console.WriteLine("Initial array:");
-PrintArray2DInt(myArray);
+PrintArray2DInt(myArray54);
 
-for(int i = 0; i < myArray.GetLength(0); i++)
-    SortRow(myArray, i);
+for(int i = 0; i < myArray54.GetLength(0); i++)
+    SortRow(myArray54, i);
 
 Console.WriteLine("\nSorted rows array:");
-PrintArray2DInt(myArray);
+PrintArray2DInt(myArray54);
 
+/* Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку 
+с наименьшей суммой элементов.
+Например, задан массив:
+1 4 7 2
+5 9 2 3
+8 4 2 4
+5 2 6 7
+Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
+*/
+
+int RowSum(int[,] array, int rowIndex)
+{
+    int result = 0;
+    for(int i = 0; i < array.GetLength(1); i++)
+        result += array[rowIndex, i];
+    return result;
+}
+
+Console.Write("Enter row count: ");
+rows = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter column count: ");
+cols = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter min number: ");
+min = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter max number: ");
+max = Convert.ToInt32(Console.ReadLine());
+
+int[,] myArray56 = GenerateArray2DInt(rows, cols, min, max);
+Console.WriteLine("Initial array:");
+PrintArray2DInt(myArray56);
+
+int minSumRow = 0;
+for(int i = 0; i < myArray56.GetLength(0); i++)
+    if(RowSum(myArray56, minSumRow) > RowSum(myArray56, i))
+        minSumRow = i;
+Console.WriteLine("Row with minimal sum of elements is: " + minSumRow);
