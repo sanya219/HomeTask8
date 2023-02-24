@@ -95,3 +95,50 @@ for(int i = 0; i < myArray56.GetLength(0); i++)
     if(RowSum(myArray56, minSumRow) > RowSum(myArray56, i))
         minSumRow = i;
 Console.WriteLine("Row with minimal sum of elements is: " + minSumRow + 1); // в тестах строки нумеруются с 1, поэтому +1
+
+/* Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
+Например, даны 2 матрицы:
+2 4 | 3 4
+3 2 | 3 3
+Результирующая матрица будет:
+18 20
+15 18
+*/
+
+int[,] MatrixMultiply(int[,] matrix1, int[,] matrix2)
+{
+    int[,] resultMatrix = new int[matrix1.GetLength(0), matrix2.GetLength(1)];
+    for(int i = 0; i <  resultMatrix.GetLength(0); i++)
+        for(int j = 0; j < resultMatrix.GetLength(1); j++)
+            for(int k = 0; k < matrix1.GetLength(1); k++)
+                resultMatrix[i, j] += matrix1[i, k] * matrix2[k, j];
+    return resultMatrix;
+}
+
+Console.Write("Enter row count matrix 1: ");
+rows = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter column count matrix 1: ");
+cols = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter min number: ");
+min = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter max number: ");
+max = Convert.ToInt32(Console.ReadLine());
+int[,] myMatrix1 = GenerateArray2DInt(rows, cols, min, max);
+
+Console.Write("Enter row count matrix 2: ");
+rows = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter column count matrix 2: ");
+cols = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter min number: ");
+min = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter max number: ");
+max = Convert.ToInt32(Console.ReadLine());
+int[,] myMatrix2 = GenerateArray2DInt(rows, cols, min, max);
+
+if(myMatrix1.GetLength(1) != myMatrix2.GetLength(0))
+    Console.WriteLine("Matrixes cannot by multiplied!");
+else
+{
+    int[,] multipliedMatrix = MatrixMultiply(myMatrix1, myMatrix2);
+    PrintArray2DInt(multipliedMatrix);
+}
