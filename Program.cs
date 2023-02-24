@@ -190,7 +190,7 @@ void PrintArray3DInt(int[,,] array)
         }
     }
 }
-
+/*
 Console.Write("Enter rows dimention: ");
 rows = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter cols dimention: ");
@@ -200,3 +200,42 @@ int depth = Convert.ToInt32(Console.ReadLine());
 int[,,] myArray60 = GenerateUniqueArray(rows, cols, depth);
 
 PrintArray3DInt(myArray60);
+*/
+/*
+Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4. 
+Например, на выходе получается вот такой массив:
+01 02 03 04
+12 13 14 05
+11 16 15 06
+10 09 08 07
+*/
+
+int[,] GenerateSpiralArray(int rows, int cols)
+{
+    int[,] array = new int[rows, cols];
+    int number = 1, minRow = 0, maxRow = rows, minCol = 0, maxCol = cols;
+    while(number <= rows * cols)
+    {
+        for(int i = minCol; i < maxCol; i++)
+            array[minRow, i] = number++;
+        minRow++;
+        for(int i = minRow; i < maxRow; i++)
+            array[i, maxCol] = number++;
+        maxCol--;
+        for(int i = maxCol; i > minCol; i--)
+            array[maxRow, i] = number++;
+        maxRow--;
+        for(int i = maxRow; i > minRow; i--)
+            array[i, minCol] = number++;
+        minCol--;
+    }   
+    return array;
+}
+
+Console.Write("Enter rows: ");
+rows = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter columns: ");
+cols = Convert.ToInt32(Console.ReadLine());
+
+int[,] myArray62 = GenerateSpiralArray(rows, cols);
+PrintArray2DInt(myArray62);
