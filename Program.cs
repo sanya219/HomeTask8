@@ -48,7 +48,7 @@ Console.Write("Enter min number: ");
 int min = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter max number: ");
 int max = Convert.ToInt32(Console.ReadLine());
-
+/*
 int[,] myArray54 = GenerateArray2DInt(rows, cols, min, max);
 Console.WriteLine("Initial array:");
 PrintArray2DInt(myArray54);
@@ -58,7 +58,7 @@ for(int i = 0; i < myArray54.GetLength(0); i++)
 
 Console.WriteLine("\nSorted rows array:");
 PrintArray2DInt(myArray54);
-
+*/
 /* Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку 
 с наименьшей суммой элементов.
 Например, задан массив:
@@ -76,7 +76,7 @@ int RowSum(int[,] array, int rowIndex)
         result += array[rowIndex, i];
     return result;
 }
-
+/*
 Console.Write("Enter row count: ");
 rows = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter column count: ");
@@ -95,7 +95,7 @@ for(int i = 0; i < myArray56.GetLength(0); i++)
     if(RowSum(myArray56, minSumRow) > RowSum(myArray56, i))
         minSumRow = i;
 Console.WriteLine("Row with minimal sum of elements is: " + minSumRow + 1); // в тестах строки нумеруются с 1, поэтому +1
-
+*/
 /* Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
 Например, даны 2 матрицы:
 2 4 | 3 4
@@ -114,7 +114,7 @@ int[,] MatrixMultiply(int[,] matrix1, int[,] matrix2)
                 resultMatrix[i, j] += matrix1[i, k] * matrix2[k, j];
     return resultMatrix;
 }
-
+/*
 Console.Write("Enter row count matrix 1: ");
 rows = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter column count matrix 1: ");
@@ -135,6 +135,12 @@ Console.Write("Enter max number: ");
 max = Convert.ToInt32(Console.ReadLine());
 int[,] myMatrix2 = GenerateArray2DInt(rows, cols, min, max);
 
+Console.WriteLine("Matrix 1:");
+PrintArray2DInt(myMatrix1);
+Console.WriteLine("Matrix 2:");
+PrintArray2DInt(myMatrix2);
+Console.WriteLine("\nMultiplication is:");
+
 if(myMatrix1.GetLength(1) != myMatrix2.GetLength(0))
     Console.WriteLine("Matrixes cannot by multiplied!");
 else
@@ -142,3 +148,55 @@ else
     int[,] multipliedMatrix = MatrixMultiply(myMatrix1, myMatrix2);
     PrintArray2DInt(multipliedMatrix);
 }
+*/
+/* Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. 
+Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
+Массив размером 2 x 2 x 2
+66(0,0,0) 25(0,1,0)
+34(1,0,0) 41(1,1,0)
+27(0,0,1) 90(0,1,1)
+26(1,0,1) 55(1,1,1) */
+
+int[,,] GenerateUniqueArray(int rows, int cols, int depth)
+{
+    int[,,] array = new int[rows, cols, depth];
+    int[] tempArr = new int[90];
+    for(int i = 10; i <= 99; i++)
+        tempArr[i - 10] = i;
+    for(int i = 0 ; i < rows; i++)
+        for(int j = 0; j < cols; j++)
+            for(int k = 0; k < depth; k++)
+                do{
+                    int temp = new Random().Next(90);
+                    if(tempArr[temp] != 0)
+                    {   
+                        array[i, j, k] = tempArr[temp];
+                        tempArr[temp] = 0;
+                    }
+                } while (array[i, j, k] == 0);
+    return array;
+}
+
+void PrintArray3DInt(int[,,] array)
+{
+    for(int i = 0 ; i < array.GetLength(0); i++)
+    {
+        Console.WriteLine($"Layer {i}:");
+        for(int j = 0; j < array.GetLength(1); j++)
+        {
+            for(int k = 0; k < array.GetLength(2); k++)
+                Console.Write(array[i, j, k] + $"[{i}, {j}, {k}]\t");
+            Console.Write("\n");
+        }
+    }
+}
+
+Console.Write("Enter rows dimention: ");
+rows = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter cols dimention: ");
+cols = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter depth dimention: ");
+int depth = Convert.ToInt32(Console.ReadLine());
+int[,,] myArray60 = GenerateUniqueArray(rows, cols, depth);
+
+PrintArray3DInt(myArray60);
