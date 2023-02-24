@@ -9,6 +9,9 @@
 9 5 3 2
 8 4 4 2
 */
+
+Console.WriteLine("\n****  Task 54  ****\n");
+
 int[,] GenerateArray2DInt (int rows, int cols, int min, int max)
 {
     int[,] array = new int[rows, cols];
@@ -39,7 +42,7 @@ void SortRow (int[,] array, int rowIndex)
                     array[rowIndex, i] = temp;
                 }
 }
-/*
+
 Console.Write("Enter row count: ");
 int rows = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter column count: ");
@@ -48,7 +51,7 @@ Console.Write("Enter min number: ");
 int min = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter max number: ");
 int max = Convert.ToInt32(Console.ReadLine());
-*//*
+
 int[,] myArray54 = GenerateArray2DInt(rows, cols, min, max);
 Console.WriteLine("Initial array:");
 PrintArray2DInt(myArray54);
@@ -58,7 +61,7 @@ for(int i = 0; i < myArray54.GetLength(0); i++)
 
 Console.WriteLine("\nSorted rows array:");
 PrintArray2DInt(myArray54);
-*/
+
 /* Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку 
 с наименьшей суммой элементов.
 Например, задан массив:
@@ -69,6 +72,8 @@ PrintArray2DInt(myArray54);
 Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
 */
 
+Console.WriteLine("\n****  Task 56  ****\n");
+
 int RowSum(int[,] array, int rowIndex)
 {
     int result = 0;
@@ -76,7 +81,7 @@ int RowSum(int[,] array, int rowIndex)
         result += array[rowIndex, i];
     return result;
 }
-/*
+
 Console.Write("Enter row count: ");
 rows = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter column count: ");
@@ -95,7 +100,7 @@ for(int i = 0; i < myArray56.GetLength(0); i++)
     if(RowSum(myArray56, minSumRow) > RowSum(myArray56, i))
         minSumRow = i;
 Console.WriteLine("Row with minimal sum of elements is: " + minSumRow + 1); // в тестах строки нумеруются с 1, поэтому +1
-*/
+
 /* Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
 Например, даны 2 матрицы:
 2 4 | 3 4
@@ -104,6 +109,8 @@ Console.WriteLine("Row with minimal sum of elements is: " + minSumRow + 1); // �
 18 20
 15 18
 */
+
+Console.WriteLine("\n****  Task 58  ****\n");
 
 int[,] MatrixMultiply(int[,] matrix1, int[,] matrix2)
 {
@@ -114,7 +121,7 @@ int[,] MatrixMultiply(int[,] matrix1, int[,] matrix2)
                 resultMatrix[i, j] += matrix1[i, k] * matrix2[k, j];
     return resultMatrix;
 }
-/*
+
 Console.Write("Enter row count matrix 1: ");
 rows = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter column count matrix 1: ");
@@ -148,7 +155,7 @@ else
     int[,] multipliedMatrix = MatrixMultiply(myMatrix1, myMatrix2);
     PrintArray2DInt(multipliedMatrix);
 }
-*/
+
 /* Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. 
 Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
 Массив размером 2 x 2 x 2
@@ -156,6 +163,7 @@ else
 34(1,0,0) 41(1,1,0)
 27(0,0,1) 90(0,1,1)
 26(1,0,1) 55(1,1,1) */
+Console.WriteLine("\n****  Task 60  ****\n");
 
 int[,,] GenerateUniqueArray(int rows, int cols, int depth)
 {
@@ -190,7 +198,7 @@ void PrintArray3DInt(int[,,] array)
         }
     }
 }
-/*
+
 Console.Write("Enter rows dimention: ");
 rows = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter cols dimention: ");
@@ -200,7 +208,8 @@ int depth = Convert.ToInt32(Console.ReadLine());
 int[,,] myArray60 = GenerateUniqueArray(rows, cols, depth);
 
 PrintArray3DInt(myArray60);
-*/
+
+
 /*
 Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4. 
 Например, на выходе получается вот такой массив:
@@ -209,7 +218,7 @@ PrintArray3DInt(myArray60);
 11 16 15 06
 10 09 08 07
 */
-
+Console.WriteLine("\n****  Task 62  ****\n");
 int[,] GenerateSpiralArray(int rows, int cols)
 {
     int[,] array = new int[rows, cols];
@@ -236,9 +245,9 @@ int[,] GenerateSpiralArray(int rows, int cols)
 }
 
 Console.Write("Enter rows: ");
-int rows = Convert.ToInt32(Console.ReadLine());
+rows = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter columns: ");
-int cols = Convert.ToInt32(Console.ReadLine());
+cols = Convert.ToInt32(Console.ReadLine());
 
 int[,] myArray62 = GenerateSpiralArray(rows, cols);
 PrintArray2DInt(myArray62);
