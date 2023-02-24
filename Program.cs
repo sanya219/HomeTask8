@@ -99,7 +99,7 @@ int minSumRow = 0;
 for(int i = 0; i < myArray56.GetLength(0); i++)
     if(RowSum(myArray56, minSumRow) > RowSum(myArray56, i))
         minSumRow = i;
-Console.WriteLine("Row with minimal sum of elements is: " + minSumRow + 1); // в тестах строки нумеруются с 1, поэтому +1
+Console.WriteLine("Row with minimal sum of elements is: " + (minSumRow + 1)); // в тестах строки нумеруются с 1, поэтому +1
 
 /* Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
 Например, даны 2 матрицы:
@@ -169,6 +169,11 @@ int[,,] GenerateUniqueArray(int rows, int cols, int depth)
 {
     int[,,] array = new int[rows, cols, depth];
     int[] tempArr = new int[90];
+    if(rows * cols * depth > 90)
+    {
+        Console.WriteLine("Cannot generate an array with unique two-digit numbers!!!");
+        return array;
+    }
     for(int i = 10; i <= 99; i++)
         tempArr[i - 10] = i;
     for(int i = 0 ; i < rows; i++)
