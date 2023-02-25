@@ -171,7 +171,7 @@ int[,,] GenerateUniqueArray(int rows, int cols, int depth)
     int[] tempArr = new int[90];
     if(rows * cols * depth > 90)
     {
-        Console.WriteLine("Cannot generate an array with unique two-digit numbers!!!");
+        Console.WriteLine("Cannot generate an array with unique two-digit numbers!!!\nReturning zero array.");
         return array;
     }
     for(int i = 10; i <= 99; i++)
